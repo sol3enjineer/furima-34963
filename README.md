@@ -3,49 +3,54 @@
 |------------------|--------|---------------|
 |nickname          |string  |NOT NULL       |
 |email             |string  |NOT UNIQUE     |
-|password          |string  |NOT NULL       |
-|Firstname         |string  |NOT NULL       |
-|Lastname          |string  |NOT NULL       |
-|Firstname_kana    |string  |NOT NULL       |
-|Lastname_kana     |string  |NOT NULL       |
-|Birthday          |string  |NOT NULL       |
+|encrypted_password|string  |NOT NULL       |
+|firstname         |string  |NOT NULL       |
+|lastname          |string  |NOT NULL       |
+|firstname_kana    |string  |NOT NULL       |
+|lastname_kana     |string  |NOT NULL       |
+|birthday          |date    |NOT NULL       |
+
+### Association
+- has_many :items
+- has_many :orders
 
 
 ##itemsテーブル
-|Column                    |Type        |Options        |
-|--------------------------|------------|---------------|
-|image                     |            |               |
-|Product name              |text        |NOT NULL       |
-|user                      |references  |               |
-|Product description       |text        |NOT NULL       |
-|category                  |text        |NOT NULL       |
-|Product condition         |text        |NOT NULL       |
-|Shipping charges          |text        |NOT NULL       |
-|Shipping area             |text        |NOT NULL       |
-|Shipping date             |text        |NOT NULL       |
-|price                     |text        |NOT NULL       |
-|seller                    |text        |NOT NULL       |
+|Column                    |Type        |Options          |
+|--------------------------|------------|-----------------|
+|name                      |string      |NOT NULL         |
+|user                      |references  |foreign_key: true|
+|product_description       |text        |NOT NULL         |
+|category_id               |integer     |NOT NULL         |
+|product_condition_id      |integer     |NOT NULL         |
+|shipping_charge_id        |integer     |NOT NULL         |
+|prefectures               |integer     |NOT NULL         |
+|shipping_date_id          |integer     |NOT NULL         |
+|price                     |integer     |NOT NULL         |
 
 
-##orderテーブル
+### Association
+- has_one :order
+- belongs_to :users
+
+##ordersテーブル
 |Column            |Type      |Options           |
 |------------------|----------|------------------|
-|user              |references|                  |
-|items             |references|                  |
+|user              |references|foreign_key: true |
+|item              |references|foreign_key: true |
 |
-
+### Association
+- has_one :address
+- belongs_to :users
 
 ##addressテーブル
 |Column            |Type      |Options           |
 |------------------|----------|------------------|
-|order             |references|                  |
-|Card information  |text      |NOT NULL          |
-|date of expiry_y  |text      |NOT NULL          |
-|date of expiry_m  |text      |NOT NULL          |
-|Security code     |text      |NOT NULL          |
-|Postal code       |text      |NOT NULL          |
-|Prefectures       |text      |NOT NULL          |
-|municipalities    |text      |NOT NULL          |
-|address           |text      |NOT NULL          |
-|Building name     |text      |                  |
-|telephone number  |text      |NOT NULL          |
+|order             |references|foreign_key: true |
+|postal_code       |text      |NOT NULL          |
+|prefectures       |integer   |NOT NULL          |
+|municipalities    |string    |NOT NULL          |
+|address           |string    |NOT NULL          |
+|building_name     |string    |                  |
+|telephone_number  |string    |NOT NULL          |
+
