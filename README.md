@@ -36,18 +36,18 @@
 ##ordersテーブル
 |Column            |Type      |Options           |
 |------------------|----------|------------------|
-|user              |references|foreign_key: true |
-|item              |references|foreign_key: true |
+|user              |references|FOREIGN KEY       |
+|item              |references|FOREIGN KEY       |
 |
 ### Association
 - has_one :address
 - belongs_to :user
-- belongs_to :items
+- belongs_to :item
 
 ##addressテーブル
 |Column            |Type      |Options           |
 |------------------|----------|------------------|
-|order             |references|foreign_key: true |
+|order             |references|FOREIGN KEY       |
 |postal_code       |string    |NOT NULL          |
 |prefecture_id     |integer   |NOT NULL          |
 |municipalities    |string    |NOT NULL          |
@@ -56,4 +56,4 @@
 |telephone_number  |string    |NOT NULL          |
 
 ### Association
-- belongs_to :orders
+- belongs_to :order
