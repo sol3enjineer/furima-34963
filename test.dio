@@ -1,6 +1,6 @@
 <mxfile host="65bd71144e">
     <diagram id="fLCarZYqQV4zLq5W_Vjl" name="ページ1">
-        <mxGraphModel dx="1054" dy="613" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+        <mxGraphModel dx="1122" dy="586" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
             <root>
                 <mxCell id="0"/>
                 <mxCell id="1" parent="0"/>
@@ -118,7 +118,7 @@
                 <mxCell id="40" value="" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;editable=1;overflow=hidden;" parent="39" vertex="1">
                     <mxGeometry width="30" height="30" as="geometry"/>
                 </mxCell>
-                <mxCell id="41" value="prefectures" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;align=left;spacingLeft=6;overflow=hidden;" parent="39" vertex="1">
+                <mxCell id="41" value="prefecture_id" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;align=left;spacingLeft=6;overflow=hidden;" parent="39" vertex="1">
                     <mxGeometry x="30" width="150" height="30" as="geometry"/>
                 </mxCell>
                 <mxCell id="42" value="" style="shape=partialRectangle;collapsible=0;dropTarget=0;pointerEvents=0;fillColor=none;top=0;left=0;bottom=0;right=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" parent="1" vertex="1">
@@ -223,7 +223,7 @@
                 <mxCell id="84" value="birthday" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;align=left;spacingLeft=6;overflow=hidden;" parent="1" vertex="1">
                     <mxGeometry x="70" y="300" width="160" height="30" as="geometry"/>
                 </mxCell>
-                <mxCell id="89" value="prefectures" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;align=left;spacingLeft=6;overflow=hidden;" parent="1" vertex="1">
+                <mxCell id="89" value="prefecture_id" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;align=left;spacingLeft=6;overflow=hidden;" parent="1" vertex="1">
                     <mxGeometry x="430" y="370" width="150" height="30" as="geometry"/>
                 </mxCell>
                 <mxCell id="91" value="building_name  " style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;align=left;spacingLeft=6;overflow=hidden;" parent="1" vertex="1">
@@ -241,7 +241,7 @@
                 <mxCell id="97" value="telephone_number" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;align=left;spacingLeft=6;overflow=hidden;" parent="1" vertex="1">
                     <mxGeometry x="430" y="490" width="150" height="30" as="geometry"/>
                 </mxCell>
-                <mxCell id="98" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;" edge="1" parent="1" source="55">
+                <mxCell id="98" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;" parent="1" source="55" edge="1">
                     <mxGeometry relative="1" as="geometry">
                         <mxPoint x="400" y="455" as="targetPoint"/>
                     </mxGeometry>
