@@ -37,7 +37,7 @@ describe 'ユーザー新規登録' do
     end
 
     it 'emailに@が含まれていない場合、登録できないこと' do
-      @user.email = ''
+      @user.email = 'aaagmail.com'
       @user.valid?
       expect(@user.errors.full_messages).to include("Email can't be blank")
     end
@@ -96,7 +96,7 @@ describe 'ユーザー新規登録' do
       expect(@user.errors.full_messages).to include("Firstname kana can't be blank")
     end
     it 'firstnameが全角カタカナ以外では登録できない' do
-      @user.firstname_kana = 'あああ aaa 111'
+      @user.firstname_kana = 'あああ aaa 111 ｲｲｲ'
       @user.valid?
       binding.pry
       expect(@user.errors.full_messages).to include("Firstname kana can't be blank")
@@ -107,7 +107,7 @@ describe 'ユーザー新規登録' do
       expect(@user.errors.full_messages).to include("Lastname kana can't be blank")
     end
     it 'lastnameが全角カタカナ以外では登録できない' do
-      @user.lastname_kana = 'あああ aaa 111'
+      @user.lastname_kana = 'あああ aaa 111 ｲｲｲ'
       @user.valid?
       binding.pry
       expect(@user.errors.full_messages).to include("Lastname kana can't be blank")
