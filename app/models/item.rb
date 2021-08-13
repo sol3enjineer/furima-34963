@@ -12,13 +12,16 @@ class Item < ApplicationRecord
     validates :shipping_date_id
     validates :product_description
     validates :price
+    validates :image
     end
 
     validates :price, inclusion: { in: 300..9999999 }
     validates :price, format: { with: /\A[0-9]+\z/ }
-    validates :category_id, numericality: { other_than: 1 }
-    validates :product_condition_id, numericality: { other_than: 1 }
-    validates :shipping_charge_id, numericality: { other_than: 1 }
-    validates :prefecture_id, numericality: { other_than: 1 }
-    validates :shipping_date_id, numericality: { other_than: 1 }
+    
+    with_options presence: true, numericality: { other_than: 1 } do
+        validates :category_id
+        validates :product_condition_id
+        validates :shipping_charge_id
+        validates :prefecture_id
+        validates :shipping_date_id
 end
