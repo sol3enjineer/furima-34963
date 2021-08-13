@@ -5,11 +5,6 @@ RSpec.describe Item, type: :model do
     before do
       @item = FactoryBot.build(:item)
     end
-    it 'userが紐付いていないと出品できないこと' do
-      @item.user = nil
-      @item.valid?
-      expect(@item.errors.full_messages).to include('User must exist')
-    end
     context '商品出品ができるとき' do
       it 'name,product_description,category,product_condition,shipping_charge,prefecture,shipping_dateが存在すれば登録できる' do
         expect(@item).to be_valid
@@ -56,15 +51,45 @@ RSpec.describe Item, type: :model do
         @item.valid?
         expect(@item.errors.full_messages).to include("Price can't be blank")
       end
-      it '¥300~¥9,999,999以外だと登録できない' do
-        @item.price = '0~299 10000000'
+      it '299円以下では登録できない' do
+        @item.price = '0~299'
         @item.valid?
         expect(@item.errors.full_messages).to include("Price is not included in the list")
       end
-      it '半角英数字以外だと登録できない' do
-        @item.price = 'aa ああ １１'
+      it '¥10,000,000以上では登録できない' do
+        @item.price = '10000000'
         @item.valid?
         expect(@item.errors.full_messages).to include("Price is not included in the list")
+      end
+      it '全角数字では登録できない' do
+        @item.price = '１１１'
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Price is not included in the list")
+      end
+      it '半角英数混合では登録できない' do
+        @item.price = 'aaa111'
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Price is not included in the list")
+      end
+      it '半角英語だけでは登録できない' do
+        @item.price = 'aaaaa'
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Price is not included in the list")
+      end
+      it 'userが紐付いていないと出品できないこと' do
+        @item.user = nil
+        @item.valid?
+        expect(@item.errors.full_messages).to include('User must exist')
+      end
+      it 'userが紐付いていないと出品できないこと' do
+        @item.user = nil
+        @item.valid?
+        expect(@item.errors.full_messages).to include('User must exist')
+      end
+      it 'category_idが「1」では登録できないこと' do
+        @item.category_id = '1'
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Category can't be blank")
       end
     end
   end
