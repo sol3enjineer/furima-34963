@@ -91,6 +91,26 @@ RSpec.describe Item, type: :model do
         @item.valid?
         expect(@item.errors.full_messages).to include("Category must be other than 1")
       end
+      it 'product_condition_idが「1」では登録できないこと' do
+        @item.product_condition_id = 1
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Product condition must be other than 1")
+      end
+      it 'shipping_charge_idが「1」では登録できないこと' do
+        @item.shipping_charge_id = 1
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Shipping charge must be other than 1")
+      end
+      it 'prefecture_idが「1」では登録できないこと' do
+        @item.prefecture_id = 1
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Prefecture must be other than 1")
+      end
+      it 'shipping_date_idが「1」では登録できないこと' do
+        @item.shipping_date_id = 1
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Shipping date must be other than 1")
+      end
     end
   end
 end
