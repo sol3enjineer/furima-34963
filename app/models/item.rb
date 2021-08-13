@@ -24,4 +24,5 @@ class Item < ApplicationRecord
         validates :shipping_charge_id
         validates :prefecture_id
         validates :shipping_date_id
+    end
 end
