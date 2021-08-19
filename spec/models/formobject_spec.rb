@@ -6,11 +6,14 @@ RSpec.describe Formobject, type: :model do
       user = FactoryBot.create(:user)
       item = FactoryBot.create(:item)
       @formobject = FactoryBot.build(:formobject, user_id: user.id, item_id: item.id)
-      sleep 0.2
+      sleep 1
     end
 
     context '内容に問題ない場合' do
       it '郵便番号・都道府県・市区町村・番地・電話番号が正しく入力されていれば保存できること' do
+        expect(@formobject).to be_valid
+      end
+      it '建物名が空でも購入ができる' do
         expect(@formobject).to be_valid
       end
     end
@@ -30,6 +33,11 @@ RSpec.describe Formobject, type: :model do
         @formobject.prefecture_id = ''
         @formobject.valid?
         expect(@formobject.errors.full_messages).to include("Prefecture can't be blank")
+      end
+      it 'prefecture_idが「1」では登録できないこと' do
+        @formobject.prefecture_id = '1'
+        @formobject.valid?
+        expect(@formobject.errors.full_messages).to include("Prefecture must be other than 1")
       end
       it 'municipalitiesが空だと登録できない' do
         @formobject.municipalities = ''

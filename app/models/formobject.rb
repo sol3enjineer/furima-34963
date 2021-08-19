@@ -6,10 +6,9 @@ class Formobject < ApplicationRecord
     
     with_options presence: true do
         validates :postal_code
-        validates :prefecture_id
+        validates :prefecture_id 
         validates :municipalities
         validates :address
-        validates :building_name
         validates :telephone_number 
         validates :token 
         validates :user_id
@@ -17,9 +16,11 @@ class Formobject < ApplicationRecord
     end
     validates :telephone_number, format: { with: /\A[0-9]+\z/ }
     validates :telephone_number, length: { in: 9..12 }
+    validates :prefecture_id, numericality: { other_than: 1 }
 
     def save
         order = Order.create(item_id: item_id, user_id: user_id )
         Address.create(postal_code: postal_code, prefecture_id: prefecture_id, municipalities: municipalities, address: address, building_name: building_name, telephone_number: telephone_number)
     end
 end
+
