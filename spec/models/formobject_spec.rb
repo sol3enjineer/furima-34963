@@ -2,14 +2,10 @@ require 'rails_helper'
 
 RSpec.describe Formobject, type: :model do
   describe '購入情報の保存' do
-    before do
-      item = FactoryBot.create(:item)
-      @formobject = FactoryBot.build(:formobject, item_id: item.id)
-      sleep 0.2
-    end
     before do  
       user = FactoryBot.create(:user)
-      @formobject = FactoryBot.build(:formobject, user_id: user.id)
+      item = FactoryBot.create(:item)
+      @formobject = FactoryBot.build(:formobject, user_id: user.id, item_id: item.id)
       sleep 0.2
     end
 
@@ -45,20 +41,52 @@ RSpec.describe Formobject, type: :model do
         @formobject.valid?
         expect(@formobject.errors.full_messages).to include("Address can't be blank")
       end
-      it 'building_nameが空だと登録できない' do
-        @formobject.building_name = ''
-        @formobject.valid?
-        expect(@formobject.errors.full_messages).to include("Building name can't be blank")
-      end
       it 'telephone_numberが空だと登録できない' do
         @formobject.telephone_number = ''
         @formobject.valid?
         expect(@formobject.errors.full_messages).to include("Telephone number can't be blank")
       end
+      it 'telephone_numberが9桁以下では購入できない' do
+        @formobject.telephone_number = '12345678'
+        @formobject.valid?
+        expect(@formobject.errors.full_messages).to include("Telephone number is too short (minimum is 9 characters)")
+      end
+      it 'telephone_numberが12桁以上では購入できない' do
+        @formobject.telephone_number = '1234567891011'
+        @formobject.valid?
+        expect(@formobject.errors.full_messages).to include("Telephone number is too long (maximum is 12 characters)")
+      end
+      it 'telephone_numberが全角数字では登録できない' do
+        @formobject.telephone_number = '１１１'
+        @formobject.valid?
+        expect(@formobject.errors.full_messages).to include("Telephone number is invalid", "Telephone number is too short (minimum is 9 characters)")
+      end
+      it 'telephone_numberが半角英数混合では登録できない' do
+        @formobject.telephone_number = 'aaa111'
+        @formobject.valid?
+        expect(@formobject.errors.full_messages).to include("Telephone number is invalid", "Telephone number is too short (minimum is 9 characters)")
+      end
+      it 'telephone_numberが半角英語だけでは登録できない' do
+        @formobject.telephone_number = 'aaaaa'
+        @formobject.valid?
+        expect(@formobject.errors.full_messages).to include("Telephone number is invalid", "Telephone number is too short (minimum is 9 characters)")
+      end
+      it 'tokenが空では購入できない' do
+        @formobject.telephone_number = 'aaaaa'
+        @formobject.valid?
+        expect(@formobject.errors.full_messages).to include("Telephone number is invalid", "Telephone number is too short (minimum is 9 characters)")
+      end
+      it 'userが紐づいていなければ購入できない' do
+        @formobject.user_id = nil
+        @formobject.valid?
+        expect(@formobject.errors.full_messages).to include("User can't be blank")
+      end
+      it 'itemが紐づいていなければ購入できない' do
+        @formobject.item_id = nil
+        @formobject.valid? 
+        expect(@formobject.errors.full_messages).to include("Item can't be blank")
+      end
    end
   end
 end
-
-
-
 

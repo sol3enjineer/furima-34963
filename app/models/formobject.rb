@@ -11,11 +11,15 @@ class Formobject < ApplicationRecord
         validates :address
         validates :building_name
         validates :telephone_number 
-        validates :token
+        validates :token 
+        validates :user_id
+        validates :item_id
     end
-    
+    validates :telephone_number, format: { with: /\A[0-9]+\z/ }
+    validates :telephone_number, length: { in: 9..12 }
+
     def save
-        order = Order.create(item_id: item_id, user_id: user_id)
+        order = Order.create(item_id: item_id, user_id: user_id )
         Address.create(postal_code: postal_code, prefecture_id: prefecture_id, municipalities: municipalities, address: address, building_name: building_name, telephone_number: telephone_number)
     end
 end

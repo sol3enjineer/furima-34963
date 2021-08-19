@@ -1,10 +1,9 @@
 class OrdersController < ApplicationController
-    before_action :authenticate_user!, only: :index
+    before_action :authenticate_user!, only: [:index, :create]
     before_action :set_item, only: [:create, :index]
 
     def index
       @formobject = Formobject.new
-      @order = Order.new
       if current_user.id == @item.user_id || @item.order.present?  
         redirect_to root_path
       end
@@ -15,6 +14,7 @@ class OrdersController < ApplicationController
       if @formobject.valid?
         pay_item
         @formobject.save
+        current_user.id == @item.user_id || @item.order.present?  
         redirect_to root_path
       else
         render :index
