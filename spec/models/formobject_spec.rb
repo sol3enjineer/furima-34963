@@ -13,8 +13,9 @@ RSpec.describe Formobject, type: :model do
       it '郵便番号・都道府県・市区町村・番地・電話番号が正しく入力されていれば保存できること' do
         expect(@formobject).to be_valid
       end
-      it '建物名が空でも購入ができる' do
-        expect(@formobject).to be_valid
+      it 'building_nameが空でも購入ができる' do
+          @formobject.building_name = ''
+          expect(@formobject).to be_valid
       end
     end
   
