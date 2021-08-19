@@ -7,7 +7,8 @@ class Item < ApplicationRecord
     belongs_to :shipping_charge
     belongs_to :shipping_date
     has_one_attached :image
-    
+    has_one :order
+
     with_options presence: true do
     validates :name
     validates :category_id
