@@ -2,6 +2,8 @@ class ItemsController < ApplicationController
     before_action :authenticate_user!, except: [:index, :show ]
     before_action :set_item, except: [:index, :new, :create ]
     before_action :update_item, only: [:update, :edit, :destroy ]
+    before_action :object, only: [:edit, :update, :destroy]
+
 
     def index
         @items = Item.all
@@ -31,7 +33,7 @@ class ItemsController < ApplicationController
         end
     end
 
-    def show  
+    def show
     end
 
     def destroy
@@ -53,4 +55,10 @@ class ItemsController < ApplicationController
             redirect_to action: :index
         end
     end
+    def object
+        @item = Formobject.new
+        if current_user.id != @item.user_id || @item.order.present?  
+            redirect_to root_path
+        end
+      end
 end
