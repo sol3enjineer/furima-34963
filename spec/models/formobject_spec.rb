@@ -36,7 +36,7 @@ RSpec.describe Formobject, type: :model do
         expect(@formobject.errors.full_messages).to include("Prefecture can't be blank")
       end
       it 'prefecture_idが「1」では登録できないこと' do
-        @formobject.prefecture_id = '1'
+        @formobject.prefecture_id = 1
         @formobject.valid?
         expect(@formobject.errors.full_messages).to include("Prefecture must be other than 1")
       end

@@ -16,7 +16,7 @@ class Formobject < ApplicationRecord
     end
 
     def save
-        order = Order.create(item_id: item_id, user_id: user_id )
+        order = Order.create(item_id: item_id, user_id: user_id orders_id: orders_id)
         Address.create(postal_code: postal_code, prefecture_id: prefecture_id, municipalities: municipalities, address: address, building_name: building_name, telephone_number: telephone_number)
     end
 end
