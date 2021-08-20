@@ -12,6 +12,7 @@ class OrdersController < ApplicationController
       if @formobject.valid?
         pay_item
         @formobject.save
+        redirect_to root_path
       else
         render :index
       end
