@@ -1,4 +1,4 @@
-class Formobject < ApplicationRecord
+class Formobject
     include ActiveModel::Model
     attr_accessor :postal_code, :prefecture_id, :municipalities, :address, :building_name, :telephone_number, :user_id, :item_id, :token
 

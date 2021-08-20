@@ -6,7 +6,7 @@ class ItemsController < ApplicationController
 
 
     def index
-        @items = Item.all
+        @items = Item.all.order("created_at DESC")
     end
 
     def new
@@ -56,7 +56,6 @@ class ItemsController < ApplicationController
         end
     end
     def object
-        @item = Formobject.new
         if current_user.id != @item.user_id || @item.order.present?  
             redirect_to root_path
         end

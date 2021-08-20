@@ -4,6 +4,7 @@ class OrdersController < ApplicationController
     before_action :object, only: [:create, :index]
 
     def index
+      @formobject = Formobject.new
     end
   
     def create
@@ -14,7 +15,6 @@ class OrdersController < ApplicationController
       else
         render :index
       end
-
     end
   
     private
